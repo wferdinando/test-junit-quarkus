@@ -11,10 +11,10 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 
 @QuarkusTest
-public class CompanyControllerTest {
+class CompanyControllerTest {
 
     @Test
-    public void testSaveCompanyEndPoint() throws Exception {
+    void testSaveCompanyEndPoint() throws Exception {
         Company company = Factory.createCompany();
 
         RestAssured
@@ -32,7 +32,7 @@ public class CompanyControllerTest {
     }
 
     @Test
-    public void testFindAllCompaniesEndPoint() throws Exception {
+    void testFindAllCompaniesEndPoint() throws Exception {
         RestAssured
                 .when()
                 .get("/company")

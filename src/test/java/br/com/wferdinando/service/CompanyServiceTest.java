@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.wferdinando.Factory;
@@ -15,15 +16,21 @@ import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
-public class CompanyServiceTest {
+class CompanyServiceTest {
 
     @Inject
     CompanyService service;
 
+    private Company company;
+
+    @BeforeEach
+    void setUp() {
+        company = Factory.createCompany();
+    }
+
     @Test
     @TestTransaction
-    public void testSaveCompany() {
-        Company company = Factory.createCompany();
+    void testSaveCompany() {
         Assertions.assertEquals(Optional.of(company), service.saveCompany(company));
     }
 
@@ -36,7 +43,6 @@ public class CompanyServiceTest {
     @Test
     @TestTransaction
     void testGetCompanies() {
-        Company company = Factory.createCompany();
         service.saveCompany(company);
 
         List<Company> companies = new ArrayList<>();
